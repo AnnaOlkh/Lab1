@@ -93,21 +93,6 @@ namespace Lab1
             Grid.SetColumn(label, 0);
             grid.Children.Add(label);
         }
-        /*private void CreateAndSetCell(int row, int col)
-        {
-            var entry = new Entry
-            {
-                Text = "",
-                VerticalOptions = LayoutOptions.Center,
-                HorizontalOptions = LayoutOptions.Center
-            };
-            entry.TextChanged += EntryTextChanged;
-            entry.Focused += EntryFocused;
-            cell_expressions[row.ToString() + "A" + col.ToString()] = entry.Text;
-            Grid.SetRow(entry, row);
-            Grid.SetColumn(entry, col + 1);
-            grid.Children.Add(entry);
-        }*/
         private void CreateAndSetCell(int row, int col)
         {
             var entry = new Entry
@@ -129,25 +114,11 @@ namespace Lab1
             Grid.SetColumn(entry, col + 1);
             grid.Children.Add(entry);
         }
-        /*private void EntryFocused(object sender, FocusEventArgs e)
-        {
-            last_clicked_cell = (Entry)sender;
-            text_input.Text = last_clicked_cell.Text;
-        }*/
         private void EntryFocused(object sender, FocusEventArgs e)
         {
             last_clicked_cell = (Entry)sender; string cellName = (string)last_clicked_cell.BindingContext;
             text_input.Text = cell_expressions[cellName];
         }
-
-        /*private void EntryTextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (sender == last_clicked_cell)
-            {
-                text_input.Text = e.NewTextValue;
-                cell_expressions[Grid.GetRow(last_clicked_cell).ToString() + GetColumnName(Grid.GetColumn(last_clicked_cell))] = text_input.Text;
-            }
-        }*/
         private void EntryTextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender == last_clicked_cell)
@@ -156,14 +127,6 @@ namespace Lab1
                 string cellName = (string)last_clicked_cell.BindingContext; cell_expressions[cellName] = e.NewTextValue;
             }
         }
-        /*private void MainEntryTextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (last_clicked_cell is not null)
-            {
-                last_clicked_cell.Text = e.NewTextValue;
-                cell_expressions[Grid.GetRow(last_clicked_cell).ToString() + GetColumnName(Grid.GetColumn(last_clicked_cell))] = text_input.Text;
-            }
-        }*/
         private void MainEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             if (last_clicked_cell != null)
@@ -193,35 +156,13 @@ namespace Lab1
                 }
             }
 
-            string folderPath = "D:\\projects\\C#\\Lab1\\sheets";
+            string folderPath = "D:\\Ann\\k24";
             string file_name = Path.Combine(folderPath, "MyExel.xlsx");
 
             workbook.SaveAs(file_name);
 
             DisplayAlert("the file has been saved in project folder", "ok", "ok");
         }
-
-
-        /*private void CalculateButtonClicked(object sender, EventArgs e)
-        {
-            string expr = text_input.Text;
-
-            Evaluator evaluator = new Evaluator(cell_expressions);
-
-            try
-            {
-                Evaluator.HandleEmptyExpression(expr);
-
-                var result = evaluator.Evaluate(expr);
-
-                text_input.Text = result.ToString();
-                last_clicked_cell.Text = result.ToString();
-            }
-            catch (Exception ex)
-            {
-                DisplayAlert("Помилка", ex.Message, "OK");
-            }
-        }*/
         private void CalculateButtonClicked(object sender, EventArgs e)
         {
             string expr = text_input.Text;
@@ -354,7 +295,7 @@ namespace Lab1
             {
                 SaveButtonClicked(sender, e);
             }
-            string filePath = "D:\\projects\\C#\\Lab1\\sheets\\MyExel.xlsx";
+            string filePath = "D:\\Ann\\k24\\MyExel.xlsx";
             if (File.Exists(filePath))
             {
                 LoadExcelFile(filePath); DisplayAlert("Успіх", "Файл успішно відкрито!", "OK");
